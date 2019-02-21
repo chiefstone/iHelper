@@ -21,26 +21,17 @@ public:
 	virtual void InitWindow();
 	virtual void OnFinalMessage(HWND hWnd);
 	virtual CDuiString GetSkinFile();
+	
+	LRESULT OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& bHandled);
+	LRESULT OnGetMinMaxInfo(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
+	LRESULT HandleCustomMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 
 protected:
 	void Notify(TNotifyUI& msg);
 
 private:
 	CLabelUI* labTitle;
-	CRichEditUI* editUpper;
-	CRichEditUI* editLower;
-	CRichEditUI* editNumber;
-	CRichEditUI* editSymbol;
-	CCheckBoxUI* chkUpper;
-	CCheckBoxUI* chkLower;
-	CCheckBoxUI* chkNumber;
-	CCheckBoxUI* chkSymbol;
-	CLabelUI* labLength;
-	CRichEditUI* editLength;
-	CLabelUI* labCount;
-	CRichEditUI* editCount;
-	CRichEditUI* editPassword;
-	CButtonUI* btnGenerator;
+	CTrayIcon trayIcon;
 };
 
 #endif

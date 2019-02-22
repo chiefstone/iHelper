@@ -20,7 +20,12 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	HRESULT Hr = ::CoInitialize(NULL);
 	if(FAILED(Hr)) return 0;
 	m_hMutex = CreateMutex(NULL,FALSE,_T("Global\\iHelper"));
-	if (m_hMutex==NULL) return 0;
+	if (GetLastError() == ERROR_ALREADY_EXISTS) {
+		CloseHandle(m_hMutex);
+		m_hMutex = NULL;
+		return 0;
+	}
+	//if (m_hMutex==NULL) return 0;
 
 	CPaintManagerUI::SetInstance(hInstance);
 	CPaintManagerUI::SetResourceType(UILIB_ZIPRESOURCE);

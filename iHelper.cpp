@@ -25,7 +25,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 		m_hMutex = NULL;
 		return 0;
 	}
-	//if (m_hMutex==NULL) return 0;
 
 	CPaintManagerUI::SetInstance(hInstance);
 	CPaintManagerUI::SetResourceType(UILIB_ZIPRESOURCE);
@@ -133,10 +132,12 @@ CDuiString CMainDlg::GetSkinFile()
 void CMainDlg::Notify(TNotifyUI& msg)
 {
 	CDuiString sCtrlName = msg.pSender->GetName();
-	//OutputDebugString(msg.sType);
 	if (_tcsicmp(msg.sType,DUI_MSGTYPE_CLICK) == 0)
 	{
-		if (_tcsicmp(sCtrlName,_T("btnOption1")) == 0){
+		if (_tcsicmp(sCtrlName,_T("btnMin")) == 0){
+			::ShowWindow(m_hWnd, SW_HIDE);
+		}
+		else if (_tcsicmp(sCtrlName,_T("btnOption1")) == 0){
 			CDuiString sBuffer = editOption1->GetText();
 			if(sBuffer.GetLength() > 0){
 				sOption1 = sBuffer;
